@@ -46,5 +46,37 @@ public class FriendshipGraph {
     }
 
     private int getDistance(Person p1, Person p2) {
+        int distance =0;
+        if(p1==p2)
+            return distance;
+        for(Person p : personList)
+        {
+            p.setDistance(0);
+            p.setVisited(false);
+        }
+        Queue<Person> queue = new LinkedList<>();
+        queue.offer(p1);
+        while(!queue.isEmpty())
+        {
+            Person cur = queue.poll();
+            if(!cur.getVisited())
+            {
+                cur.setVisited(true);
+                if(cur.getFriend().contains(p2))
+                    return ++distance;
+                distance = cur.getDistance()+1;
+                for(Person p : cur.getFriend())
+                {
+                    if(!p.getVisited())
+                    {
+                        queue.offer(p);
+                        p.setDistance(distance);
+                        if(p.getFriend().contains(p2))
+                            return distance+1;
+                    }
+                }
+            }
+        }
+        return -1;
     }
 }
