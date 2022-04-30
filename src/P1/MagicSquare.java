@@ -15,7 +15,7 @@ public class MagicSquare {
         }
     }
     public boolean isLegalMagicSquare(String fileName) throws IOException {
-        //fileName = ".\\txt\\" + fileName;
+        //fileName = ".\\txt\\" + fileName1;
         File file = new File("fileName");
         Scanner in = new Scanner(file);
         String myLine;
