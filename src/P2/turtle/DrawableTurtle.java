@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
-import turtle.Action.ActionType;
 
 /**
  * Turtle for drawing in a window on the screen.
@@ -47,18 +46,18 @@ public class DrawableTurtle implements Turtle {
         this.lines.add(lineSeg);
         this.currentPosition = new Point(newX, newY);
 
-        this.actionList.add(new Action(ActionType.FORWARD, "forward " + steps + " steps", lineSeg));
+        this.actionList.add(new Action(Action.ActionType.FORWARD, "forward " + steps + " steps", lineSeg));
     }
 
     public void turn(double degrees) {
         degrees = (degrees % CIRCLE_DEGREES + CIRCLE_DEGREES) % CIRCLE_DEGREES;
         this.currentHeading = (this.currentHeading + degrees) % CIRCLE_DEGREES;
-        this.actionList.add(new Action(ActionType.TURN, "turn " + degrees + " degrees", null));
+        this.actionList.add(new Action(Action.ActionType.TURN, "turn " + degrees + " degrees", null));
     }
 
     public void color(PenColor color) {
         this.currentColor = color;
-        this.actionList.add(new Action(ActionType.COLOR, "change to " + color.toString().toLowerCase(), null));
+        this.actionList.add(new Action(Action.ActionType.COLOR, "change to " + color.toString().toLowerCase(), null));
     }
 
     /**

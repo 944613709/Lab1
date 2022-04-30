@@ -22,7 +22,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingWorker;
 
-import turtle.Action.ActionType;
 
 /**
  * Displays turtle graphics in a window on the screen.
@@ -163,9 +162,9 @@ public class TurtleGUI extends JFrame {
 
             double totalLength = 0;
             for (Action a : actionList) {
-                if (a.type() == ActionType.TURN) {
+                if (a.type() == Action.ActionType.TURN) {
                     totalLength += LENGTH_OF_A_TURN;
-                } else if (a.type() == ActionType.FORWARD) {
+                } else if (a.type() == Action.ActionType.FORWARD) {
                     totalLength += a.lineSegment().length();
                 }
             }
