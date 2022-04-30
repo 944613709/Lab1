@@ -16,7 +16,7 @@ public class MagicSquare {
     }
     public boolean isLegalMagicSquare(String fileName) throws IOException {
         //fileName = ".\\txt\\" + fileName;
-        File file = new File("fileName");
+        File file = new File(fileName);
         Scanner in = new Scanner(file);
         String myLine;
         String[] list;
@@ -65,24 +65,22 @@ public class MagicSquare {
             System.out.print("行列数不相等 ");
             return false;
         }
-        if(rowSum[0] != colSum[0]) {
-            System.out.print("行列和不相等");
-            return false;
-        }
-        for (i = 0; i < length - 1; i++) {
-            if ((rowSum[i] != rowSum[0]) || (colSum[i] != colSum[0])) {
-                System.out.print("行或列和不相等 ");
+        int sum = rowSum[0];//累加和计为sum
+        for(i=0;i<length;i++)
+        {
+            if(rowSum[i]!=sum || colSum[i]!=sum)
+            {
+                System.out.println("行列数字和不相等");
                 return false;
             }
         }
         for (i = 0; i < length; i++) {
-            sum1 += square[i][i];
+            sum1 = sum1+square[i][i];
+            j=length-1-i;
+            sum2 = sum2+square[i][j];
         }
-        for (i = 0, j = length - 1; i < length; i++, j--) {
-            sum2 += square[i][j];
-        }
-        if (sum1 != sum2 || rowSum[0] != sum1) {
-            System.out.print("对角线和不相等 ");
+        if (sum1!=sum||sum2!=sum) {
+            System.out.print("对角线的数字和不相等 ");
             return false;
         }
         return true;
