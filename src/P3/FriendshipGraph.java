@@ -68,9 +68,7 @@ public class FriendshipGraph{
         return -1;
     }
 
-    /**
-     * �ͻ��˳���
-     */
+
     public static void main(String[] args) {
         FriendshipGraph graph = new FriendshipGraph();
         Person rachel = new Person("Rachel");

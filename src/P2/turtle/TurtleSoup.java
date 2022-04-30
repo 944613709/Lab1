@@ -15,8 +15,11 @@ public class TurtleSoup {
      * @param turtle the turtle context
      * @param sideLength length of each side
      */
-    public static void drawSquare(Turtle turtle, int sideLength) {
-        throw new RuntimeException("implement me!");
+    public static void drawSquare(Turtle turtle, int sideLength) {//画一个矩形
+        for(int i=0; i<4; i++) {
+            turtle.forward(sideLength);
+            turtle.turn(90);
+        }
     }
 
     /**
@@ -29,7 +32,10 @@ public class TurtleSoup {
      * @return angle in degrees, where 0 <= angle < 360
      */
     public static double calculateRegularPolygonAngle(int sides) {
-        throw new RuntimeException("implement me!");
+        //正多边形内角
+        double res = (sides - 2) * 180.00 / sides;
+        return res;
+
     }
 
     /**
@@ -62,14 +68,14 @@ public class TurtleSoup {
     /**
      * Given the current direction, current location, and a target location, calculate the Bearing
      * towards the target point.
-     * 
+     *
      * The return value is the angle input to turn() that would point the turtle in the direction of
      * the target point (targetX,targetY), given that the turtle is already at the point
      * (currentX,currentY) and is facing at angle currentBearing. The angle must be expressed in
-     * degrees, where 0 <= angle < 360. 
+     * degrees, where 0 <= angle < 360.
      *
      * HINT: look at http://en.wikipedia.org/wiki/Atan2 and Java's math libraries
-     * 
+     *
      * @param currentBearing current direction as clockwise from north
      * @param currentX current location x-coordinate
      * @param currentY current location y-coordinate
@@ -80,7 +86,13 @@ public class TurtleSoup {
      */
     public static double calculateBearingToPoint(double currentBearing, int currentX, int currentY,
                                                  int targetX, int targetY) {
-        throw new RuntimeException("implement me!");
+        //计算turn从当前点到目标点所需的参数
+        double targetBearing = Math.atan((double)(targetY-currentY) / (targetX-currentX)) / Math.PI * 180.0;
+        if(targetBearing < 0) targetBearing += 360.0;
+        if(currentBearing <= 90) currentBearing = 90 - currentBearing;
+        else currentBearing =  360 + 90 - currentBearing;
+        if(targetBearing > currentBearing) return 360.0 + currentBearing - targetBearing;
+        else return currentBearing - targetBearing;
     }
 
     /**
