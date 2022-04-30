@@ -1,7 +1,11 @@
 package P1;
 
+import org.junit.Test;
+
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class MagicSquare {
@@ -83,6 +87,41 @@ public class MagicSquare {
             System.out.print("对角线的数字和不相等 ");
             return false;
         }
+        return true;
+    }
+    //它如何根据输入的参数（奇数 n）生成一
+    //个 n×n 的 Magic Square
+    public static boolean generateMagicSquare(int n) {
+        if(n%2==0 || n<0)
+            return false;//要求不能负数，不能非奇数
+        int [][]magic = new int[n][n];          //数组
+        int row = 0, col = n / 2, i, j, square = n * n;
+        for (i = 1; i <= square; i++) {
+            magic[row][col] = i;
+            if (i % n == 0)
+                row++;
+            else {
+                if (row == 0)
+                    row = n - 1;
+                else
+                    row--;
+                if (col == (n - 1))
+                    col = 0;
+                else
+                    col++;
+            } }
+        PrintStream out = System.out;
+        try {
+            System.setOut(new PrintStream("src/P1/txt/6.txt"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        for (i = 0; i < n; i++) { // 打印MagicSquare
+            for (j = 0; j < n; j++)
+                System.out.print(magic[i][j] + "\t");
+            System.out.println();
+        }
+        System.setOut(out);
         return true;
     }
 }
