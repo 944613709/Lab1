@@ -43,6 +43,11 @@ public class MagicSquare {
         try {
             for (i = 0, j = 0; in.hasNextLine(); i++, j = 0)
             {
+                if(length != list.length)//接下来这一行是不是和第一行length一样
+                {
+                    System.out.println("各行的列数并不完全相等");
+                    return false;
+                }
                 for (String u : list) {
                     square[i][j] = Integer.parseInt(u);
                     colSum[j] += square[i][j];
