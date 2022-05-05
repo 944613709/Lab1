@@ -3,6 +3,7 @@
  */
 package P2.turtle;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.ArrayList;
@@ -110,7 +111,14 @@ public class TurtleSoup {
      *         otherwise of size (# of points) - 1
      */
     public static List<Double> calculateBearings(List<Integer> xCoords, List<Integer> yCoords) {
-        throw new RuntimeException("implement me!");
+        List<Double> degrees = new ArrayList<>();
+        degrees.add((Double)calculateBearingToPoint(0, (int)xCoords.get(0), (int)yCoords.get(0),
+                (int)xCoords.get(1), (int)yCoords.get(1)));
+        for(int i=1; i<xCoords.size()-1; i++) {
+            degrees.add((Double)calculateBearingToPoint((double)degrees.get(i-1), (int)xCoords.get(i),
+                    (int)yCoords.get(i),(int)xCoords.get(i+1), (int)yCoords.get(i+1)));
+        }
+        return degrees;
     }
     
     /**
@@ -122,7 +130,26 @@ public class TurtleSoup {
      * @return minimal subset of the input points that form the vertices of the perimeter of the convex hull
      */
     public static Set<Point> convexHull(Set<Point> points) {
-        throw new RuntimeException("implement me!");
+        Set<Point> hull = new HashSet<Point>();
+        Point[] pointsArray = new Point[points.size()];
+        points.toArray(pointsArray);
+        if(pointsArray.length < 3) return points;
+        int l=0;
+        for(int i=0; i<pointsArray.length; i++)
+            if(pointsArray[i].x() < pointsArray[l].x())
+                l = i;
+        int p=l, q;
+        do {
+            hull.add(pointsArray[p]);
+            q = (p + 1) % (pointsArray.length - 1);
+            for(int i=0; i<pointsArray.length; i++) {
+                double ans = (pointsArray[i].y() - pointsArray[p].y()) * (pointsArray[q].x() - pointsArray[i].x())
+                        - (pointsArray[i].x() - pointsArray[p].x()) * (pointsArray[q].y() - pointsArray[i].y());
+                if(ans < 0) q = i;
+            }
+            p = q;
+        }while(p != l);
+        return hull;
     }
     
     /**

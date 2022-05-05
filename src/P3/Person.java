@@ -2,20 +2,19 @@ package P3;
 
 import java.util.*;
 
-public class Person{
+public class Person
+{
     private String name;
     private boolean visited;
-    private Set<Person> friend;
-    private int distance;
+    private Set<Person> friendSet;
     Person(String name){
         this.name = name;
         this.visited = false;
-        this.friend = new HashSet<Person>();
-        this.distance = 0;
+        this.friendSet = new HashSet<Person>();
     }
 
     /**
-     * Get the name of the Person object
+     * 返回Name
      * @return name
      */
     public String getName() {
@@ -23,51 +22,36 @@ public class Person{
     }
 
     /**
-     * Get the status of the Person object
-     * @return  true: has visited
-     *			false: not visited
+     * 返回Visited
+     * @return  true: 已经访问过，false: 没有访问
+     *
      */
     public boolean getVisited() {
         return visited;
     }
 
     /**
-     * set visit status
-     * @param visitStatus the visit status to set
+     * setter的visited
+     * @param flag 就是设置visited
      */
-    public void setVisited(boolean visitStatus) {
-        visited = visitStatus;
+    public void setVisited(boolean flag) {
+        visited = flag;
     }
 
     /**
-     * get the set of friends
-     * @return a set of friends
+     * 返回集合friendSet
+     * @return friendSet
      */
     public Set<Person> getFriend(){
-        return friend;
+        return friendSet;
     }
 
     /**
-     * Add a person to the set of friend
-     * @param person the person to be added
+     * 向FridendSet里面添加元素
+     * @param person 要添加的person
      */
     public void addFriend(Person person) {
-        friend.add(person);
+        friendSet.add(person);
     }
 
-    /**
-     * Get the distance from one person to this person
-     * @return an integer representing distance
-     */
-    public int getDistance() {
-        return distance;
-    }
-
-    /**
-     * Set the distance from one person to this person
-     * @param distance an integer representing distance
-     */
-    public void setDistance(int distance) {
-        this.distance = distance;
-    }
 }
