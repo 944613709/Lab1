@@ -7,7 +7,7 @@ public class Person
     private String name;
     private boolean visited;
     private Set<Person> friendSet;
-    Person(String name){
+    public Person(String name){
         this.name = name;
         this.visited = false;
         this.friendSet = new HashSet<Person>();
