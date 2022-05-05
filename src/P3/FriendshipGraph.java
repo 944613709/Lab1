@@ -4,7 +4,7 @@ import java.util.*;
 
 public class FriendshipGraph{
     public List<Person> personList;
-    FriendshipGraph(){
+    public FriendshipGraph(){
         personList = new ArrayList<>();
     }
 
@@ -32,7 +32,7 @@ public class FriendshipGraph{
     }
 
     /**
-     * 通过BFS计算person1到person2的距离
+     * 通过BFS计算person1到person2的最短距离
      * @param person1
      * @param person2
      * @return person1到person2的距离
@@ -83,7 +83,7 @@ public class FriendshipGraph{
         graph.addVertex(ben);
         graph.addVertex(kramer);
         graph.addEdge(rachel, ross);
-        graph.addEdge(ross, rachel);
+        graph.addEdge(ross, rachel);//因为底层是有向图
         graph.addEdge(ross, ben);
         graph.addEdge(ben, ross);
         System.out.println(graph.getDistance(rachel, ross)); // should print 1
